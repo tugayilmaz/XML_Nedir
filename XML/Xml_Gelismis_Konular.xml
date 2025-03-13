@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+
+
+ 1.XML Nitelikleri (Attributes)
+
+<!--
+XML’de verileri etiketlerin içinde saklamak yerine 
+nitelikler (attribute) 
+kullanarak da saklayabilirsin. 
+-->
+🔹Niteliksiz (Element İçinde) XML Kullanimi
+
+<Arac>
+    <Marka>BMW</Marka>
+    <Model>320i</Model>
+    <Yil>2020</Yil>
+</Arac>
+
+🔹 Nitelik (Attribute) Kullanimi
+
+<Arac Marka="BMW" Model="320i" Yil="2020" />
+
+2.XML Doğrulama (Well-Formed ve Valid XML)
+
+<!-- Bir XML belgesinin geçerli ve düzgün biçimlendirilmiş olması 
+gerekir.
+
+✔ Well-Formed XML (Biçim Olarak Doğru XML)
+
+Tüm etiketler kapatılmalı:
+❌ <Ad>Ahmet
+✅ <Ad>Ahmet</Ad>
+
+Büyük/küçük harf duyarlılığına dikkat edilmeli
+Tek bir kök etiketi olmalı
+
+✔ Valid XML (Geçerli XML)
+XML’in bir şemaya (XSD veya DTD) uygun olup olmadığı kontrol edilir.
+E-fatura, e-arşiv gibi belgelerde şema kontrolü zorunludur! -->
+
+
+3.XML İçin DTD ve XSD Kullanimi
+
+<!--
+Bir XML belgesinin yapisini belirlemek için 
+DTD (Document Type Definition) 
+veya XSD (XML Schema Definition) kullanilir.
+-->
+
+🔹 DTD Örneği
+<!--
+<!DOCTYPE Araclar [
+    <!ELEMENT Araclar (Arac+)>
+    <!ELEMENT Arac (Marka, Model, Yil)>
+    <!ELEMENT Marka (#PCDATA)>
+    <!ELEMENT Model (#PCDATA)>
+    <!ELEMENT Yil (#PCDATA)>
+]>
+Hangi eitketlerin zorunlu olduğunu belirtiyor.
+-->
+🔹 XSD Örneği
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Araclar">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Arac" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Marka" type="xs:string"/>
+                            <xs:element name="Model" type="xs:string"/>
+                            <xs:element name="Yil" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+<!-- Bu XSD şeması, XML dosyanın doğrulanmasını 
+sağlar ve hataları önler. -->
+
+4. XML Veri Dönüştürme (JSON ve CSV)
+
+<!-- ✔ XML ➝ JSON Çevirme -->
+-XML- 
+<Kisi>
+    <Ad>Ahmet</Ad>
+    <Soyad>Yılmaz</Soyad>
+</Kisi>
+
+<!-- 
+-jSON- 
+{
+    "Kisi": {
+        "Ad": "Ahmet",
+        "Soyad": "Yılmaz"
+    }
+}
+JSON, XML’e göre daha hafif ve okunaklıdır ancak 
+şema doğrulama konusunda XML kadar güçlü değildir.
+-->
+
+<!--✔ XML ➝ CSV Çevirme -->
+-XML-
+<Kisiler>
+    <Kisi>
+        <Ad>Ahmet</Ad>
+        <Soyad>Yılmaz</Soyad>
+    </Kisi>
+    <Kisi>
+        <Ad>Mehmet</Ad>
+        <Soyad>Demir</Soyad>
+    </Kisi>
+</Kisiler>
+
+<!-- 
+
+-CSV-
+Ad,Soyad
+Ahmet,Yılmaz
+Mehmet,Demir
+
+-->
+
+</root>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ButunBilgiler> 
+<nedir_xml>
+
+<!--
+1. XML Nedir?
+XML (eXtensible Markup Language), yani Genişletilebilir 
+İşaretleme Dili, veriyi yapılandırılmış bir formatta saklamak
+ ve taşımak için kullanılan bir dildir. HTML gibi işaretleme
+  dili olsa da, HTML belirli etiketlere sahipken XML tamamen 
+  özelleştirilebilir ve farklı türde verileri saklamak için 
+  kullanılabilir.
+
+🔹 XML’in Özellikleri
+İnsan ve makine tarafından okunabilir
+Veri saklama ve taşıma amacıyla kullanılır
+Hiyerarşik bir yapıya sahiptir (Ağaç yapısında organize edilir)
+Özelleştirilebilir etiketler içerir
+Programlama dillerinden bağımsızdır
+Veri bütünlüğünü sağlamak için şemalarla doğrulanabilir
+
+📌 XML’in Kullanım Alanları
+Web servislerinde veri alışverişi (SOAP, REST API’ler)
+Konfigürasyon dosyalarında (Android manifest, Spring config)
+E-fatura, e-arşiv, e-irsaliye gibi ticari belgelerde (UBL)
+Veri saklama ve taşımada
+
+ --> </nedir_xml>
+
+<!--🔹 Temel XML Yapısı-->
+
+ <Kisiler>
+    <Kisi>
+        <Ad>Tugay</Ad>
+        <Soyad>Yılmaz</Soyad>
+        <Yas>24</Yas>
+    </Kisi>
+    <Kisi>
+        <Ad>Anıl</Ad>
+        <Soyad>Yılmaz</Soyad>
+        <Yas>35</Yas>
+    </Kisi>
+</Kisiler>
+
+<!--
+🔹 XML’in Temel Kuralları
+1.Tüm etiketler kapanmalıdır
+
+✅ <Ad>Ahmet</Ad>
+❌ <Ad>Ahmet
+
+2.Bütün XML tek bir kök etikete sahip olmalıdır
+❌ Bir XML dosyasında iki farklı kök etiketi kullanamazsın.
+
+3.Büyük/küçük harf duyarlıdır
+<ad> ve <Ad> farklı etiketlerdir.
+
+4.Özel karakterler & ile gösterilir
+<, >, &, " ve ' karakterleri doğrudan kullanılamaz, bunları 
+&lt;, &gt;, &amp;, &quot;, &apos; şeklinde yazmalısın.
+
+-->
+
+</ButunBilgiler> 

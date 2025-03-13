@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+
+1. CDATA Nedir ve Neden Kullanilir?
+
+<!--
+ Bazen XML içinde etiket gibi görünen ama aslında 
+sadece metin olan veriler bulunabilir. Bunlar XML tarafından 
+yanlış yorumlanmaması için CDATA bölümü içinde yazılır.
+-->
+
+<mesaj><![CDATA[<b>Bu bir kalın yazıdır</b>]]></mesaj>
+
+<!--
+Normalde <b>Bu bir kalın yazıdır</b> bir HTML etiketi gibi 
+algılanır. Ama biz bunu metin olarak saklamak istiyorsak 
+CDATA kullanırız.
+
+Kullanım Alanları:
+✔ HTML kodlarını XML içinde saklamak için
+✔ Kod parçalarını XML içinde bozulmadan saklamak için
+✔ XML içinde özel karakterler kullanıldığında
+-->
+
+2. XML  Bazi Özel Karakterler:
+<!-- 
+
+<	&lt;
+>	&gt;
+&	&amp;
+"	&quot;
+'	&apos;
+
+-->
+
+3. XML Şemasi (XSD) ile Zorunlu Alanlar Tanimlama
+
+<Kisi>
+    <Ad>Ahmet</Ad>
+    <Soyad>Yılmaz</Soyad>
+    <Yas>25</Yas>
+</Kisi>
+
+<!-- 
+Bu dosyanın şu kurallara uymasını istersek:
+
+Ad ve Soyad zorunlu olsun
+Yas sadece sayı kabul etsin
+Bunu bir XSD dosyası ile tanımlayabiliriz:
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Kisi">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Ad" type="xs:string" minOccurs="1"/>
+                <xs:element name="Soyad" type="xs:string" minOccurs="1"/>
+                <xs:element name="Yas" type="xs:integer" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+ 4. XML de Büyük Veri İşleme (DOM ve SAX)
+<!--
+Eğer XML dosyan çok büyükse (örneğin, milyonlarca satır 
+içeriyorsa), bu dosyayı işlemek için iki farklı yöntem vardır:
+
+1️. DOM (Document Object Model) → XML’in tamamını belleğe yükleyerek çalışır.
+✔ Küçük ve orta büyüklükteki XML dosyaları için uygundur.
+✔ Avantajı: XML içeriğine hızlı erişim sağlar.
+✔ Dezavantajı: Büyük XML dosyalarında çok fazla RAM kullanır.
+
+2️. SAX (Simple API for XML) → XML’i satır satır okur, belleğe yüklemez.
+✔ Büyük XML dosyaları için çok daha hızlıdır.
+✔ Avantajı: Daha az bellek kullanır.
+✔ Dezavantajı: Veri üzerinde düzenleme yapmak zordur.
+
+-->
+
+
+
+
+
+
+
+
+
+</root>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+
+1.XML Ad Alanlari (Namespaces)
+
+<!--
+ XML büyük projelerde farklı kaynaklardan gelen verileri
+ birleştirmek için kullanılır. Aynı isimli etiketler olduğunda 
+çakışmaları önlemek için "ad alanları" kullanılır.
+
+
+<Kitap>
+    <Ad>XML'in Temelleri</Ad>
+</Kitap>
+
+<Kitap>
+    <Ad>Başka Bir XML Kitabı</Ad>
+</Kitap>
+
+-->
+
+<k1:Kitap xmlns:k1="http://yayinevi.com/kitaplar">
+    <k1:Ad>XML'in Temelleri</k1:Ad>
+</k1:Kitap>
+
+<k2:Kitap xmlns:k2="http://magaza.com/kitaplar">
+    <k2:Ad>Başka Bir XML Kitabı</k2:Ad>
+</k2:Kitap>
+
+<!-- 
+📌 Faydalı Noktalar:
+✔ XML'de çakışmaları önler.
+✔ Farklı sistemlerden gelen verileri birleştirirken önemlidir.
+✔ Web servisleri (SOAP, REST) ve e-Fatura gibi büyük 
+sistemlerde ad alanları zorunludur.
+-->
+
+2.XPath ile XML de Veri Seçme
+
+<!-- Büyük bir XML dosyan var ve içinden belirli bir veriyi 
+çekmek istiyorsun. XPath tam olarak bunu yapar. 
+
+<Kütüphane>
+    <Kitap>
+        <Ad>XML Öğreniyorum</Ad>
+        <Yazar>Ahmet Yılmaz</Yazar>
+        <YayınYılı>2022</YayınYılı>
+    </Kitap>
+    <Kitap>
+        <Ad>Gelişmiş XML Teknikleri</Ad>
+        <Yazar>Mehmet Demir</Yazar>
+        <YayınYılı>2023</YayınYılı>
+    </Kitap>
+</Kütüphane>
+
+
+Tüm Kiraplarİ Seç: 
+/Kütüphane/Kitap
+
+Sadece kitap isimlerini seç:
+/Kütüphane/Kitap/Ad
+
+Yazarı "Mehmet Demir" olan kitabı seç:
+/Kütüphane/Kitap[Yazar="Mehmet Demir"]
+
+📌 XPath Gerçek Kullanım Alanları:
+✔ XML belgelerinden hızlı veri çekmek için kullanılır.
+✔ E-fatura ve e-arşiv belgelerinde verileri süzmek için gereklidir.
+✔ Web scraping (veri çekme) işlemlerinde XML ve HTML ile kullanılır.-->
+
+
+3.XSLT ile XML i Dönüştürme
+
+<!--  XML verisini farkli formatlara çevirmek için XSLT 
+(Extensible Stylesheet Language Transformations) kullanilir.
+
+📌 Örnek: Bir XML belgesini HTML olarak göstermek istiyoruz.
+-XML-
+<Kütüphane>
+    <Kitap>
+        <Ad>XML Dönüştürme</Ad>
+        <Yazar>Ahmet Çelik</Yazar>
+    </Kitap>
+</Kütüphane>
+
+-->
+
+-XSLT Dönüştürme Kod-
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:template match="/">
+        <html>
+        <body>
+            <h2>Kütüphane Kitapları</h2>
+            <table border="1">
+                <tr><th>Kitap Adı</th><th>Yazar</th></tr>
+                <xsl:for-each select="Kütüphane/Kitap">
+                    <tr>
+                        <td><xsl:value-of select="Ad"/></td>
+                        <td><xsl:value-of select="Yazar"/></td>
+                    </tr>
+                </xsl:for-each>
+            </table>
+        </body>
+        </html>
+    </xsl:template>
+</xsl:stylesheet>
+
+<!-- 📌 XSLT Kullanım Alanları:
+✔ XML'den HTML sayfası üretmek için kullanılır.
+✔ E-fatura ve e-arşiv verilerini farklı formatlara dönüştürmek için önemlidir.
+✔ XML verilerini PDF, JSON veya TXT gibi formatlara çevirmekte kullanılır.
+-->
+
+4. XML Şifreleme ve Dijital İmzalama 
+
+Özellikle e-fatura, banka sistemleri ve güvenli veri aktarimi için XML dosyalarının imzalanması ve şifrelenmesi gerekir.
+
+✔ XML İmzalama:
+Elektronik fatura gibi belgelerin sahte olmadiğini garantiler.
+e-İmza ve zaman damgasi içerir.
+SHA-256, RSA gibi güvenlik algoritmalari kullanilir.
+
+
+✔ XML Şifreleme:
+Hassas bilgileri saklamak için kullanilir.
+AES, RSA gibi güvenli şifreleme yöntemleriyle korunur.
+
+
+</root>
